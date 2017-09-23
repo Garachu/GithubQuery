@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--LinearLayout important for stacking views-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.meg.githubquery.MainActivity">
+
+    <!--This is where you enter the Query-->
+    <!--A hint is a text which is displayed when the EditText is empy-->
+    <EditText
+        android:id="@+id/searchEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Type a query for Github here!"
+        android:textSize="22sp" />
+
+    <!--This displays the entered URL-->
+    <TextView
+        android:id="@+id/searchTextBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Enter the Github Query and it will show up Here!"
+        android:textSize="22sp" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--Make the TextView scrollable-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/resultTextBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Enter a Query and your results will show up Here!"
+                android:textSize="18sp" />
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/error_message_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:padding="16dp"
+            android:visibility="invisible"
+            android:text="@string/error_message"/>
+
+        <ProgressBar
+            android:id="@+id/pb_loading_Indicator"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:layout_width="42dp"
+            android:layout_height="42dp" />
+
+
+    </FrameLayout>
+
+
+</LinearLayout>
