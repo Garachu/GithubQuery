@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +19,11 @@ import java.io.IOException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final int NUM_lIST_ITEMS = 100;
+
+    //Create and initialize MainAdapter variable
+    private MainAdapter mMainAdapter;
 
     //For the Query
     EditText searchEditText;
@@ -33,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
     //To display Results Loading progress
     ProgressBar loadingIndicator;
 
+    //References to RecyclerView
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         searchTextView = (TextView) findViewById(R.id.searchTextBox);
 
         //Get the TextBox for displaying the results
-        resultTextView = (TextView) findViewById(R.id.resultTextBox);
+        //resultTextView = (TextView) findViewById(R.id.resultTextBox);
 
         //Get the TextBox for displaying the error message
         errorMessageTextView = (TextView) findViewById(R.id.error_message_display);
@@ -55,6 +65,19 @@ public class MainActivity extends AppCompatActivity {
         //Get a reference to the ProgressBar using findViewById
         loadingIndicator = (ProgressBar) findViewById(R.id.pb_loading_Indicator);
 
+        //Get reference to our RecyclerView Using findViewById
+        //We'll use this reference to assign a LayoutManager
+        recyclerView = (RecyclerView) findViewById(R.id.rv_numbers);
+
+        //Create and set LayoutManager for the RecyclerView
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(Boolean.TRUE);
+
+        mMainAdapter = new MainAdapter(NUM_lIST_ITEMS);
+
+        //Set the MainAdapter on the RecyclerView
+        recyclerView.setAdapter(mMainAdapter);
 
     }
 
